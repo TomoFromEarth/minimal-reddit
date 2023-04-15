@@ -54,3 +54,17 @@ const redditSlice = createSlice({
     },
   },
 });
+
+export const {
+  setPosts,
+  startGetPosts,
+  getPostsSuccess,
+  getPostsFailed,
+  setSearchTerm,
+  toggleShowingComments,
+  startGetComments,
+  getCommentsSuccess,
+  getCommentsFailed,
+} = redditSlice.actions;
+
+export default redditSlice.reducer;
