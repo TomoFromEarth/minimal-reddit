@@ -68,3 +68,22 @@ export const {
 } = redditSlice.actions;
 
 export default redditSlice.reducer;
+
+export const fetchPosts = (subreddit) => async (dispatch) => {
+  try {
+    dispatch(startGetPosts());
+
+    const posts = await getSubredditPosts(subreddit);
+    const postsWithMetadata = posts.map((post) => ({
+      ...post,
+      showingComments: false,
+      comments: [],
+      loadingComments: false,
+      errorComments: false,
+    }));
+
+    dispatch(getPostsSuccess(postsWithMetadata));
+  } catch (error) {
+    dispatch(getPostsFailed());
+  }
+};
