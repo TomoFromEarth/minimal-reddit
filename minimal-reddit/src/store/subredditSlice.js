@@ -29,3 +29,15 @@ const subredditSlice = createSlice({
 export const { startGetSubreddits, getSubredditsSuccess, getSubredditsFailed } = subredditSlice.reducer;
 
 export default subredditSlice.reducer;
+
+export const fetchSubreddits = () => async (dispatch) => {
+  try {
+    dispatch(startGetSubreddits());
+
+    const subreddits = await getSubreddits();
+
+    dispatch(getSubredditsSuccess(subreddits));
+  } catch (error) {
+    dispatch(getSubredditsFailed());
+  }
+};
