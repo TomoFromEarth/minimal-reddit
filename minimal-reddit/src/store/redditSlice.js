@@ -87,3 +87,20 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
     dispatch(getPostsFailed());
   }
 };
+
+export const fetchComments = (index, permalink) => async (dispatch) => {
+  try {
+    dispatch(startGetComments(index));
+
+    const comments = await getPostComments(permalink);
+
+    dispatch(
+      getCommentsSuccess({
+        index,
+        comments,
+      }),
+    );
+  } catch (error) {
+    dispatch(getCommentsFailed(index));
+  }
+};
