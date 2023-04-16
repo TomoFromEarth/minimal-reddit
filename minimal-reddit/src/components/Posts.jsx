@@ -63,6 +63,18 @@ const Post = ({ post, onToggleComments }) => {
             >
               {renderDownVote()}
             </button>
+            <div className="w-full">
+              <h3 className="m-0 mb-2">{post.title}</h3>
+              <div className="w-full hidden rounded">
+                <img src={post.url} alt="" className="w-full" />
+              </div>
+              <div className="mt-2 border-t-2 pt-1 flex justify-between items-center">
+                <span className="flex items-center">
+                  <Avatar name={post.author} />
+                  <span className="text-blue-500 font-bold">{post.author}</span>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </Card>
