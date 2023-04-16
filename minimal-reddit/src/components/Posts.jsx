@@ -2,6 +2,7 @@ import { useState } from "react";
 import Card from "../components/Card";
 import { TiArrowUpThick, TiArrowUpOutline, TiArrowDownThick, TiArrowDownOutline } from "react-icons/ti";
 import shortenNumber from "../utils/shortenNumber";
+import { formatDistanceToNow } from "date-fns";
 
 const Post = ({ post, onToggleComments }) => {
   const [vote, setVote] = useState(0);
@@ -73,6 +74,7 @@ const Post = ({ post, onToggleComments }) => {
                   <Avatar name={post.author} />
                   <span className="text-blue-500 font-bold">{post.author}</span>
                 </span>
+                <span>{formatDistanceToNow(new Date(post.created_utc * 1000), { addSuffix: true })}</span>
               </div>
             </div>
           </div>
