@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Card from "../components/Card";
+import { TiArrowUpThick, TiArrowUpOutline } from "react-icons/ti";
 
 const Post = ({ post, onToggleComments }) => {
   const [vote, setVote] = useState(0);
@@ -14,11 +15,27 @@ const Post = ({ post, onToggleComments }) => {
     }
   };
 
+  const renderUpVote = () => {
+    if (vote === -1) {
+      return <TiArrowUpThick className="flex items-center rounded p-0 pointer border-none bg-none" />;
+    }
+    return <TiArrowUpOutline className="flex items-center rounded p-0 pointer border-none bg-none" />;
+  };
+
   return (
     <article key={post.id}>
       <Card>
         <div className="flex">
-          <div className="flex flex-col items-center mr-3"></div>
+          <div className="flex flex-col items-center mr-3">
+            <button
+              type="button"
+              className={`${vote === 1 && "text-green-500"}`}
+              onClick={() => onHandleVote(1)}
+              aria-label="Up vote"
+            >
+              {renderUpVote()}
+            </button>
+          </div>
         </div>
       </Card>
     </article>
