@@ -1,7 +1,7 @@
 import { formatDistanceToNow } from "date-fns";
 import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
-import Avatar from "../components/Avatar";
+import Avatar from "./Avatar";
 
 const Comments = ({ comment }) => {
   return (
