@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Card from "../components/Card";
-import { TiArrowUpThick, TiArrowUpOutline, TiArrowDownThick, TiArrowDownOutline } from "react-icons/ti";
+import { TiArrowUpThick, TiArrowUpOutline, TiArrowDownThick, TiArrowDownOutline, TiMessage } from "react-icons/ti";
 import shortenNumber from "../utils/shortenNumber";
 import { formatDistanceToNow } from "date-fns";
+
 
 const Post = ({ post, onToggleComments }) => {
   const [vote, setVote] = useState(0);
@@ -42,6 +43,39 @@ const Post = ({ post, onToggleComments }) => {
     return "";
   };
 
+  const renderComments = () => {
+    if (post.errorComments) {
+      return (
+        <div>
+          <h3>Oops! Trouble loading comments!</h3>
+        </div>
+      );
+    }
+
+    if (post.loadingComments) {
+      return (
+        <div>
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+        </div>
+      );
+    }
+
+    if (post.showingComments) {
+      return (
+        <div>
+          {post.comments.map((comment) => (
+            <Comment comment={comment} key={comment.id} />
+          ))}
+        </div>
+      );
+    }
+
+    return null;
+  }
+
   return (
     <article key={post.id}>
       <Card>
@@ -75,7 +109,14 @@ const Post = ({ post, onToggleComments }) => {
                   <span className="text-blue-500 font-bold">{post.author}</span>
                 </span>
                 <span>{formatDistanceToNow(new Date(post.created_utc * 1000), { addSuffix: true })}</span>
+                <span className="flex items-center">
+                  <button type="button" className={`mr-0 ${post.showingComments && "text-blue-500"}`} onClick={() => onToggleComments(post.permalink)} aria-label="Show comments">
+                    <TiMessage className="mr-0" />
+                  </button>
+                  {shortenNumber(post.num_comments, 1)}
+                </span>
               </div>
+              {renderComments()}
             </div>
           </div>
         </div>
