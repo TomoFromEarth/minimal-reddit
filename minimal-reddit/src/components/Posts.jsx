@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { TiArrowDownOutline, TiArrowDownThick, TiArrowUpOutline, TiArrowUpThick, TiMessage } from "react-icons/ti";
 import Skeleton from "react-loading-skeleton";
-import Card from "../components/Card";
 import shortenNumber from "../utils/shortenNumber";
 import Avatar from "./Avatar";
+import Card from "./Card";
+import Comments from "./Comments";
 
 const Posts = ({ post, onToggleComments }) => {
   const [vote, setVote] = useState(0);
@@ -66,7 +67,7 @@ const Posts = ({ post, onToggleComments }) => {
       return (
         <div>
           {post.comments.map((comment) => (
-            <Comment comment={comment} key={comment.id} />
+            <Comments comment={comment} key={comment.id} />
           ))}
         </div>
       );
