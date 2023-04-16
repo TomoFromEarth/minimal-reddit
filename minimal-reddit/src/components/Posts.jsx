@@ -1,11 +1,13 @@
-import { useState } from "react";
-import Card from "../components/Card";
-import { TiArrowUpThick, TiArrowUpOutline, TiArrowDownThick, TiArrowDownOutline, TiMessage } from "react-icons/ti";
-import shortenNumber from "../utils/shortenNumber";
 import { formatDistanceToNow } from "date-fns";
+import PropTypes from "prop-types";
+import { useState } from "react";
+import { TiArrowDownOutline, TiArrowDownThick, TiArrowUpOutline, TiArrowUpThick, TiMessage } from "react-icons/ti";
+import Skeleton from "react-loading-skeleton";
+import Card from "../components/Card";
+import shortenNumber from "../utils/shortenNumber";
+import Avatar from "./Avatar";
 
-
-const Post = ({ post, onToggleComments }) => {
+const Posts = ({ post, onToggleComments }) => {
   const [vote, setVote] = useState(0);
 
   const onHandleVote = (newValue) => {
@@ -20,16 +22,16 @@ const Post = ({ post, onToggleComments }) => {
 
   const renderUpVote = () => {
     if (vote === -1) {
-      return <TiArrowUpThick className="flex items-center rounded p-0 pointer border-none bg-none" />;
+      return <TiArrowUpThick className="pointer flex items-center rounded border-none bg-none p-0" />;
     }
-    return <TiArrowUpOutline className="flex items-center rounded p-0 pointer border-none bg-none" />;
+    return <TiArrowUpOutline className="pointer flex items-center rounded border-none bg-none p-0" />;
   };
 
   const renderDownVote = () => {
     if (vote === -1) {
-      return <TiArrowDownThick className="flex items-center rounded p-0 pointer border-none bg-none" />;
+      return <TiArrowDownThick className="pointer flex items-center rounded border-none bg-none p-0" />;
     }
-    return <TiArrowDownOutline className="flex items-center rounded p-0 pointer border-none bg-none" />;
+    return <TiArrowDownOutline className="pointer flex items-center rounded border-none bg-none p-0" />;
   };
 
   const getVoteType = () => {
@@ -55,10 +57,7 @@ const Post = ({ post, onToggleComments }) => {
     if (post.loadingComments) {
       return (
         <div>
-          <Skeleton />
-          <Skeleton />
-          <Skeleton />
-          <Skeleton />
+          <Skeleton count={4} />
         </div>
       );
     }
@@ -74,13 +73,13 @@ const Post = ({ post, onToggleComments }) => {
     }
 
     return null;
-  }
+  };
 
   return (
     <article key={post.id}>
       <Card>
         <div className="flex">
-          <div className="flex flex-col items-center mr-3">
+          <div className="mr-3 flex flex-col items-center">
             <button
               type="button"
               className={`${vote === 1 && "text-green-500 hover:text-green-500 active:text-green-500"}`}
@@ -100,17 +99,22 @@ const Post = ({ post, onToggleComments }) => {
             </button>
             <div className="w-full">
               <h3 className="m-0 mb-2">{post.title}</h3>
-              <div className="w-full hidden rounded">
+              <div className="hidden w-full rounded">
                 <img src={post.url} alt="" className="w-full" />
               </div>
-              <div className="mt-2 border-t-2 pt-1 flex justify-between items-center">
+              <div className="mt-2 flex items-center justify-between border-t-2 pt-1">
                 <span className="flex items-center">
                   <Avatar name={post.author} />
-                  <span className="text-blue-500 font-bold">{post.author}</span>
+                  <span className="font-bold text-blue-500">{post.author}</span>
                 </span>
                 <span>{formatDistanceToNow(new Date(post.created_utc * 1000), { addSuffix: true })}</span>
                 <span className="flex items-center">
-                  <button type="button" className={`mr-0 ${post.showingComments && "text-blue-500"}`} onClick={() => onToggleComments(post.permalink)} aria-label="Show comments">
+                  <button
+                    type="button"
+                    className={`mr-0 ${post.showingComments && "text-blue-500"}`}
+                    onClick={() => onToggleComments(post.permalink)}
+                    aria-label="Show comments"
+                  >
                     <TiMessage className="mr-0" />
                   </button>
                   {shortenNumber(post.num_comments, 1)}
@@ -125,4 +129,9 @@ const Post = ({ post, onToggleComments }) => {
   );
 };
 
-export default Post;
+Posts.propTypes = {
+  post: PropTypes.object.isRequired,
+  onToggleComments: PropTypes.func.isRequired,
+};
+
+export default Posts;
