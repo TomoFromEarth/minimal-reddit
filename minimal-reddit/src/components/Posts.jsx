@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Card from "../components/Card";
-import { TiArrowUpThick, TiArrowUpOutline } from "react-icons/ti";
+import { TiArrowUpThick, TiArrowUpOutline, TiArrowDownThick, TiArrowDownOutline } from "react-icons/ti";
 import shortenNumber from "../utils/shortenNumber";
 
 const Post = ({ post, onToggleComments }) => {
@@ -21,6 +21,13 @@ const Post = ({ post, onToggleComments }) => {
       return <TiArrowUpThick className="flex items-center rounded p-0 pointer border-none bg-none" />;
     }
     return <TiArrowUpOutline className="flex items-center rounded p-0 pointer border-none bg-none" />;
+  };
+
+  const renderDownVote = () => {
+    if (vote === -1) {
+      return <TiArrowDownThick className="flex items-center rounded p-0 pointer border-none bg-none" />;
+    }
+    return <TiArrowDownOutline className="flex items-center rounded p-0 pointer border-none bg-none" />;
   };
 
   const getVoteType = () => {
@@ -48,6 +55,14 @@ const Post = ({ post, onToggleComments }) => {
               {renderUpVote()}
             </button>
             <p className={`text-green-500 ${getVoteType()}`}>{shortenNumber(post.ups, 1)}</p>
+            <button
+              type="button"
+              className={`${vote === -1 && "text-red-500 hover:text-red-500 active:text-red-500"}`}
+              onClick={() => onHandleVote(-1)}
+              aria-label="Down vote"
+            >
+              {renderDownVote()}
+            </button>
           </div>
         </div>
       </Card>
