@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchComments, fetchPosts, selectFilteredPosts, setSearchTerm } from "../store/redditSlice";
 import getRandomNumber from "../utils/getRandomNumber";
 import Posts from "./Posts";
+import PostsLoading from "./PostsLoading";
 
 const Home = () => {
   const reddit = useSelector((state) => state.reddit);
@@ -24,7 +25,7 @@ const Home = () => {
   };
 
   if (isLoading) {
-    const loadingItems = Array(getRandomNumber(3, 10)).fill(<PostLoading />);
+    const loadingItems = Array(getRandomNumber(3, 10)).fill(<PostsLoading />);
     const itemVariants = {
       hidden: { opacity: 0, y: -20 },
       visible: { opacity: 1, y: 0 },
@@ -33,7 +34,7 @@ const Home = () => {
       <motion.div initial="hidden" animate="visible">
         {loadingItems.map((item, index) => (
           <motion.div key={index} variants={itemVariants}>
-            <PostLoading />
+            <PostsLoading />
           </motion.div>
         ))}
       </motion.div>
