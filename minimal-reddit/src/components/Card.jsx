@@ -1,12 +1,15 @@
 import PropTypes from "prop-types";
 
 const Card = ({ className, children }) => {
-  return <div className={`mb-4 rounded bg-slate-50 p-3 ${className}`}>{children}</div>;
+  return (
+    <div className={`mb-9 rounded-lg bg-slate-100 p-6 transition delay-0 duration-100 ease-in hover:shadow-lg`}>
+      {children}
+    </div>
+  );
 };
 
 Card.propTypes = {
-  className: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.object.isRequired,
 };
 
 export default Card;
