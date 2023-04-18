@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setSearchTerm } from "../store/redditSlice";
+import { useEffect, useState } from "react";
 import { FaReddit } from "react-icons/fa";
 import { HiOutlineSearch } from "react-icons/hi";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchTerm } from "../store/redditSlice";
 
 const Header = () => {
   const [searchTermLocal, setSearchTermLocal] = useState("");
@@ -23,16 +23,16 @@ const Header = () => {
   };
 
   return (
-    <header className="grid grid-cols-3 h-16 px-10 bg-slate-50 content-center">
-      <div className="flex font-bold p-2 col-start-1 col-end-2 items-center">
-        <FaReddit className="mr-2 col-start-2 col-end-3 text-3xl text-blue-600" />
+    <header className="mb-8 grid h-16 grid-cols-3 content-center bg-slate-50 px-10">
+      <div className="col-start-1 col-end-2 flex items-center p-2 font-bold">
+        <FaReddit className="col-start-2 col-end-3 mr-2 text-3xl text-blue-600" />
         <p className="text-headerText">
           Minimal<span className="text-blue-600">Reddit</span>
         </p>
       </div>
       <form className="flex items-center" onSubmit={onSearchTermSubmit}>
         <input
-          className="flex-1 border-none rounded py-1 px-2 mr-2 max-h-max"
+          className="mr-2 max-h-max flex-1 rounded border-none px-2 py-1"
           type="text"
           placeholder="Search"
           value={searchTermLocal}

@@ -89,7 +89,7 @@ const Posts = ({ post, onToggleComments }) => {
             >
               {renderUpVote()}
             </button>
-            <p className={`text-green-500 ${getVoteType()}`}>{shortenNumber(post.ups, 1)}</p>
+            <p className={`text-blue-500 ${getVoteType()}`}>{shortenNumber(post.ups, 1)}</p>
             <button
               type="button"
               className={`${vote === -1 && "text-red-500 hover:text-red-500 active:text-red-500"}`}
@@ -98,9 +98,11 @@ const Posts = ({ post, onToggleComments }) => {
             >
               {renderDownVote()}
             </button>
+          </div>
+          <div>
             <div className="w-full">
               <h3 className="m-0 mb-2">{post.title}</h3>
-              <div className="hidden w-full rounded">
+              <div className="w-full rounded">
                 <img src={post.url} alt="" className="w-full" />
               </div>
               <div className="mt-2 flex items-center justify-between border-t-2 pt-1">
