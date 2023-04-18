@@ -22,17 +22,25 @@ const Posts = ({ post, onToggleComments }) => {
   };
 
   const renderUpVote = () => {
-    if (vote === -1) {
-      return <TiArrowUpThick className="pointer flex items-center rounded border-none bg-none p-0" />;
+    if (vote === 1) {
+      return (
+        <TiArrowUpThick className="pointer flex h-6 w-6 items-center rounded-lg border-none bg-none p-0 text-green-500" />
+      );
     }
-    return <TiArrowUpOutline className="pointer flex items-center rounded border-none bg-none p-0" />;
+    return (
+      <TiArrowUpOutline className="pointer flex h-6 w-6 items-center rounded-lg border-none bg-none p-0 text-slate-500" />
+    );
   };
 
   const renderDownVote = () => {
     if (vote === -1) {
-      return <TiArrowDownThick className="pointer flex items-center rounded border-none bg-none p-0" />;
+      return (
+        <TiArrowDownThick className="pointer flex h-6 w-6 items-center rounded-lg border-none bg-none p-0 text-red-500" />
+      );
     }
-    return <TiArrowDownOutline className="pointer flex items-center rounded border-none bg-none p-0" />;
+    return (
+      <TiArrowDownOutline className="pointer flex h-6 w-6 items-center rounded-lg border-none bg-none p-0 text-slate-500" />
+    );
   };
 
   const getVoteType = () => {
@@ -80,7 +88,7 @@ const Posts = ({ post, onToggleComments }) => {
     <article key={post.id}>
       <Card>
         <div className="flex">
-          <div className="mr-3 flex flex-col items-center">
+          <div className="mr-6 flex flex-col items-center">
             <button
               type="button"
               className={`${vote === 1 && "text-green-500 hover:text-green-500 active:text-green-500"}`}
@@ -89,7 +97,7 @@ const Posts = ({ post, onToggleComments }) => {
             >
               {renderUpVote()}
             </button>
-            <p className={`text-blue-500 ${getVoteType()}`}>{shortenNumber(post.ups, 1)}</p>
+            <p className={`my-2 text-sm text-blue-500 ${getVoteType()}`}>{shortenNumber(post.ups, 1)}</p>
             <button
               type="button"
               className={`${vote === -1 && "text-red-500 hover:text-red-500 active:text-red-500"}`}
@@ -101,26 +109,28 @@ const Posts = ({ post, onToggleComments }) => {
           </div>
           <div>
             <div className="w-full">
-              <h3 className="m-0 mb-2">{post.title}</h3>
-              <div className="w-full rounded">
-                <img src={post.url} alt="" className="w-full" />
+              <h3 className="mb-4 text-lg font-bold">{post.title}</h3>
+              <div>
+                <img src={post.url} alt="" className="w-full rounded-lg" />
               </div>
-              <div className="mt-2 flex items-center justify-between border-t-2 pt-1">
+              <div className="mt-4 flex items-center justify-between pt-2">
                 <span className="flex items-center">
                   <Avatar name={post.author} />
-                  <span className="font-bold text-blue-500">{post.author}</span>
+                  <span className="text-sm font-bold text-blue-500">{post.author}</span>
                 </span>
-                <span>{formatDistanceToNow(new Date(post.created_utc * 1000), { addSuffix: true })}</span>
+                <span className="text-xs text-slate-500">
+                  {formatDistanceToNow(new Date(post.created_utc * 1000), { addSuffix: true })}
+                </span>
                 <span className="flex items-center">
                   <button
                     type="button"
-                    className={`mr-0 ${post.showingComments && "text-blue-500"}`}
+                    className={`mr-0 text-slate-500 ${post.showingComments && "text-blue-500"}`}
                     onClick={() => onToggleComments(post.permalink)}
                     aria-label="Show comments"
                   >
-                    <TiMessage className="mr-0" />
+                    <TiMessage className="mr-0 h-6 w-6" />
                   </button>
-                  {shortenNumber(post.num_comments, 1)}
+                  <span className="text-sm text-slate-500">{shortenNumber(post.num_comments, 1)}</span>
                 </span>
               </div>
               {renderComments()}

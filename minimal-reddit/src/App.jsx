@@ -6,8 +6,10 @@ function App() {
   return (
     <>
       <Header />
-      <main>
-        <Home />
+      <main className="grid grid-cols-3 p-4">
+        <div className="col-start-1 col-end-3">
+          <Home />
+        </div>
       </main>
     </>
   );

@@ -5,7 +5,7 @@ import Avatar from "./Avatar";
 
 const Comments = ({ comment }) => {
   return (
-    <div className="m-0 rounded p-2">
+    <div className="m-0 rounded-lg p-2">
       <div className="mb-2 flex items-center">
         <Avatar name={comment.author} />
         <p className="font-bold">{comment.author}</p>
