@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 
 const Avatar = ({ name }) => {
-  return (
-    <img src={`https://api.adorable.io/avatars/10/${name}`} alt={`${name}'s profile`} className="mr-1 h-5 rounded-lg" />
-  );
+  const seed = Math.random().toString(36).substring(7);
+  const avatar = `https://api.dicebear.com/6.x/pixel-art/svg?seed=${seed}`;
+  return <img src={`${avatar}`} alt={`${name}'s profile`} className="mr-1 h-8 w-8 rounded-lg" />;
 };
 
 Avatar.propTypes = {
