@@ -32,7 +32,7 @@ const Home = () => {
     };
     return (
       <motion.div initial="hidden" animate="visible">
-        {loadingItems.map((index) => (
+        {loadingItems.map((_, index) => (
           <motion.div key={index} variants={itemVariants}>
             <PostsLoading />
           </motion.div>

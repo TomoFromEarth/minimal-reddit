@@ -1,5 +1,5 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { getSubredditPosts, getPostComments } from "../api/reddit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { getPostComments, getSubredditPosts } from "../api/reddit";
 
 const initialState = {
   posts: [],
@@ -32,6 +32,10 @@ const redditSlice = createSlice({
       state.searchTerm = action.payload;
       state.searchTerm = "";
     },
+    setSelectedSubreddit(state, action) {
+      state.selectedSubreddit = action.payload;
+      state.searchTerm = "";
+    },
     toggleShowingComments(state, action) {
       state.posts[action.payload].showingComments = !state.posts[action.payload].showingComments;
     },
@@ -61,6 +65,7 @@ export const {
   getPostsSuccess,
   getPostsFailed,
   setSearchTerm,
+  setSelectedSubreddit,
   toggleShowingComments,
   startGetComments,
   getCommentsSuccess,
