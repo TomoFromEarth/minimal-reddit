@@ -107,34 +107,32 @@ const Posts = ({ post, onToggleComments }) => {
               {renderDownVote()}
             </button>
           </div>
-          <div>
-            <div className="w-full">
-              <h3 className="mb-4 text-lg font-bold">{post.title}</h3>
-              <div>
-                <img src={post.url} alt="" className="w-full rounded-lg" />
-              </div>
-              <div className="mt-4 flex items-center justify-between pt-2">
-                <span className="flex items-center">
-                  <Avatar name={post.author} />
-                  <span className="text-sm font-bold text-blue-500">{post.author}</span>
-                </span>
-                <span className="text-xs text-slate-500">
-                  {formatDistanceToNow(new Date(post.created_utc * 1000), { addSuffix: true })}
-                </span>
-                <span className="flex items-center">
-                  <button
-                    type="button"
-                    className={`mr-0 text-slate-500 ${post.showingComments && "text-blue-500"}`}
-                    onClick={() => onToggleComments(post.permalink)}
-                    aria-label="Show comments"
-                  >
-                    <TiMessage className="mr-0 h-6 w-6" />
-                  </button>
-                  <span className="text-sm text-slate-500">{shortenNumber(post.num_comments, 1)}</span>
-                </span>
-              </div>
-              {renderComments()}
+          <div className="w-full">
+            <h3 className="mb-4 text-lg font-bold">{post.title}</h3>
+            <div>
+              <img src={post.url} alt="" className="w-full rounded-lg" />
             </div>
+            <div className="mt-4 flex items-center justify-between pt-2">
+              <span className="flex items-center">
+                <Avatar name={post.author} />
+                <span className="text-sm font-bold text-blue-500">{post.author}</span>
+              </span>
+              <span className="text-xs text-slate-500">
+                {formatDistanceToNow(new Date(post.created_utc * 1000), { addSuffix: true })}
+              </span>
+              <span className="flex items-center">
+                <button
+                  type="button"
+                  className={`mr-0 text-slate-500 ${post.showingComments && "text-blue-500"}`}
+                  onClick={() => onToggleComments(post.permalink)}
+                  aria-label="Show comments"
+                >
+                  <TiMessage className="mr-0 h-6 w-6" />
+                </button>
+                <span className="text-sm text-slate-500">{shortenNumber(post.num_comments, 1)}</span>
+              </span>
+            </div>
+            {renderComments()}
           </div>
         </div>
       </Card>
