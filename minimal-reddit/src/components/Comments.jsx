@@ -1,5 +1,6 @@
 import { formatDistanceToNow } from "date-fns";
 import PropTypes from "prop-types";
+import Skeleton from "react-loading-skeleton";
 import ReactMarkdown from "react-markdown";
 import Avatar from "./Avatar";
 
@@ -14,13 +15,13 @@ const Comments = ({ comment }) => {
   }
 
   return (
-    <div className="m-0 rounded-lg p-2">
+    <div className="mt-6 rounded-lg border border-slate-400 p-2">
       <div className="mb-2 flex items-center">
         <Avatar name={comment.author} />
         <p className="font-bold">{comment.author}</p>
-        <p className="ml-auto italic">{formattedDate}</p>
+        <p className="ml-auto text-xs">{formattedDate}</p>
       </div>
-      <ReactMarkdown>{comment.body}</ReactMarkdown>
+      {<ReactMarkdown>{comment.body}</ReactMarkdown> || <Skeleton count={4} />}
     </div>
   );
 };

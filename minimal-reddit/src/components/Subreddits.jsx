@@ -1,18 +1,39 @@
+import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSelectedSubreddit, setSelectedSubreddit } from "../store/redditSlice";
 import { fetchSubreddits, selectSubreddits } from "../store/subredditSlice";
 import Avatar from "./Avatar";
 import Card from "./Card";
+import SubredditsLoading from "./SubredditsLoading";
 
 const Subreddits = () => {
+  const subredditsLoading = useSelector((state) => state.subreddits);
   const selectedSubreddit = useSelector(selectSelectedSubreddit);
   const subreddits = useSelector(selectSubreddits);
+  const { isLoading } = subredditsLoading;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchSubreddits());
   }, [dispatch]);
+
+  if (isLoading) {
+    const loadingItems = Array(25).fill(<SubredditsLoading />);
+    const itemVariants = {
+      hidden: { opacity: 0, y: -20 },
+      visible: { opacity: 1, y: 0 },
+    };
+    return (
+      <motion.div initial="hidden" animate="visible">
+        {loadingItems.map((_, index) => (
+          <motion.div key={index} variants={itemVariants}>
+            <SubredditsLoading />
+          </motion.div>
+        ))}
+      </motion.div>
+    );
+  }
 
   return (
     <Card className="pr-4">
