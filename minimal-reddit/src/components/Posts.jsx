@@ -1,4 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
+import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { TiArrowDownOutline, TiArrowDownThick, TiArrowUpOutline, TiArrowUpThick, TiMessage } from "react-icons/ti";
@@ -10,6 +11,11 @@ import Comments from "./Comments";
 
 const Posts = ({ post, onToggleComments }) => {
   const [vote, setVote] = useState(0);
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   const onHandleVote = (newValue) => {
     if (newValue === vote) {
@@ -87,8 +93,8 @@ const Posts = ({ post, onToggleComments }) => {
   return (
     <article key={post.id}>
       <Card>
-        <div className="flex">
-          <div className="mr-6 flex flex-col items-center">
+        <motion.div initial="hidden" animate="visible" className="flex">
+          <motion.div variants={itemVariants} className="mr-6 flex flex-col items-center">
             <button
               type="button"
               className={`${vote === 1 && "text-green-500 hover:text-green-500 active:text-green-500"}`}
@@ -106,8 +112,8 @@ const Posts = ({ post, onToggleComments }) => {
             >
               {renderDownVote()}
             </button>
-          </div>
-          <div className="w-full">
+          </motion.div>
+          <motion.div variants={itemVariants} className="w-full">
             <h3 className="mb-4 text-lg font-bold">{post.title}</h3>
             <div>
               <img src={post.url} alt="" className="w-full rounded-lg" />
@@ -133,8 +139,8 @@ const Posts = ({ post, onToggleComments }) => {
               </span>
             </div>
             {renderComments()}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </Card>
     </article>
   );
