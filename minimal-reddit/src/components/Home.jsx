@@ -31,7 +31,7 @@ const Home = () => {
       visible: { opacity: 1, y: 0 },
     };
     return (
-      <motion.div initial="hidden" animate="visible">
+      <motion.div initial="hidden" animate="visible" className="rounded-md bg-slate-100">
         {loadingItems.map((_, index) => (
           <motion.div key={index} variants={itemVariants}>
             <PostsLoading />
