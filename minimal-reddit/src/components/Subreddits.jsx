@@ -19,13 +19,13 @@ const Subreddits = () => {
   }, [dispatch]);
 
   if (isLoading) {
-    const loadingItems = Array(25).fill(<SubredditsLoading />);
+    const loadingItems = Array(15).fill(<SubredditsLoading />);
     const itemVariants = {
       hidden: { opacity: 0, y: -20 },
       visible: { opacity: 1, y: 0 },
     };
     return (
-      <motion.div initial="hidden" animate="visible">
+      <motion.div initial="hidden" animate="visible" className="rounded-md bg-slate-100">
         {loadingItems.map((_, index) => (
           <motion.div key={index} variants={itemVariants}>
             <SubredditsLoading />
