@@ -31,7 +31,7 @@ const Home = () => {
       visible: { opacity: 1, y: 0 },
     };
     return (
-      <motion.div initial="hidden" animate="visible" className="rounded-md bg-slate-100">
+      <motion.div initial="hidden" animate="visible" className="rounded-md bg-slate-100 dark:bg-slate-800">
         {loadingItems.map((_, index) => (
           <motion.div key={index} variants={itemVariants}>
             <PostsLoading />
@@ -43,7 +43,7 @@ const Home = () => {
 
   if (hasError) {
     return (
-      <div className="pointer rounded-lg border-none bg-blue-500 px-2 py-4 text-base">
+      <div className="pointer rounded-lg border-none bg-blue-600 px-2 py-4 text-base dark:bg-blue-500">
         <h2>Failed to load posts!</h2>
         <button type="button" onClick={() => dispatch(fetchPosts(selectedSubreddit))}>
           Try again!
@@ -54,9 +54,9 @@ const Home = () => {
 
   if (posts.length === 0) {
     return (
-      <div className="pointer rounded-lg border-none bg-blue-500 px-2 py-4 text-base">
-        <h2>No posts found matching {searchTerm}</h2>
-        <button type="button" onClick={() => dispatch(setSearchTerm(""))}>
+      <div className="pointer rounded-lg border-none bg-blue-600 px-2 py-4 text-base font-semibold text-slate-950 dark:bg-blue-500">
+        <h2>No posts found matching "{searchTerm}"</h2>
+        <button className="rounded-md bg-slate-300 px-1" type="button" onClick={() => dispatch(setSearchTerm(""))}>
           Back to home
         </button>
       </div>

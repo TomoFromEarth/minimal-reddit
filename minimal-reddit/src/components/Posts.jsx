@@ -103,7 +103,9 @@ const Posts = ({ post, onToggleComments }) => {
             >
               {renderUpVote()}
             </button>
-            <p className={`my-2 text-sm text-blue-500 ${getVoteType()}`}>{shortenNumber(post.ups, 1)}</p>
+            <p className={`my-2 text-sm text-blue-600 dark:text-blue-500 ${getVoteType()}`}>
+              {shortenNumber(post.ups, 1)}
+            </p>
             <button
               type="button"
               className={`${vote === -1 && "text-red-500 hover:text-red-500 active:text-red-500"}`}
@@ -114,14 +116,14 @@ const Posts = ({ post, onToggleComments }) => {
             </button>
           </motion.div>
           <motion.div variants={itemVariants} className="w-full">
-            <h3 className="mb-4 text-lg font-bold">{post.title}</h3>
+            <h3 className="mb-4 text-lg font-bold text-slate-950 dark:text-slate-100">{post.title}</h3>
             <div>
               <img src={post.url} alt="" className="w-full rounded-lg" />
             </div>
             <div className="mt-4 flex items-center justify-between pt-2">
               <span className="flex items-center">
                 <Avatar name={post.author} />
-                <span className="text-sm font-bold text-blue-500">{post.author}</span>
+                <span className="text-sm font-bold text-blue-600 dark:text-blue-500">{post.author}</span>
               </span>
               <span className="text-xs text-slate-500">
                 {formatDistanceToNow(new Date(post.created_utc * 1000), { addSuffix: true })}
@@ -133,9 +135,9 @@ const Posts = ({ post, onToggleComments }) => {
                   onClick={() => onToggleComments(post.permalink)}
                   aria-label="Show comments"
                 >
-                  <TiMessage className="mr-0 h-6 w-6" />
+                  <TiMessage className="mr-2 h-8 w-8" />
                 </button>
-                <span className="text-sm text-slate-500">{shortenNumber(post.num_comments, 1)}</span>
+                <span className="text-slate-500">{shortenNumber(post.num_comments, 1)}</span>
               </span>
             </div>
             {renderComments()}
