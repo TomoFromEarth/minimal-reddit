@@ -23,16 +23,16 @@ const Header = () => {
   };
 
   return (
-    <header className="col-span-full mb-8 grid h-16 grid-flow-col grid-cols-[1fr] content-center gap-4 bg-slate-100 px-16 dark:bg-slate-800 md:grid-cols-3">
-      <div className="col-start-1 col-end-2 flex items-center py-2 font-bold">
-        <FaReddit className="mr-2 h-8 w-8 text-blue-600 dark:text-blue-500" />
+    <header className="col-span-full grid h-16 grid-flow-col grid-cols-[1fr] content-center bg-slate-100 dark:bg-slate-800 md:mb-8 md:grid-cols-3 md:gap-4 md:px-16">
+      <div className="ml-4 flex items-center justify-start font-bold md:col-start-1 md:col-end-2 md:py-2">
+        <FaReddit className="mx-1 h-8 w-8 text-blue-600 dark:text-blue-500 md:mr-2" />
         <p className="text-slate-950 dark:text-slate-300">
           Minimal<span className="text-blue-600 dark:text-blue-500">Reddit</span>
         </p>
       </div>
-      <form className="flex items-center" onSubmit={onSearchTermSubmit}>
+      <form className="mr-4 flex items-center" onSubmit={onSearchTermSubmit}>
         <input
-          className="mr-2 max-h-max flex-1 rounded-lg border-none px-2 py-1"
+          className="mb-1 mr-1 max-h-max w-32 flex-1 rounded-lg border-none px-2 py-1 text-sm sm:w-60 md:mr-2"
           type="text"
           placeholder="Search Posts"
           value={searchTermLocal}
@@ -40,7 +40,7 @@ const Header = () => {
           aria-label="Search posts"
         />
         <button
-          className="pointer text-2xl text-slate-500 dark:text-slate-400"
+          className="pointer text-xl text-slate-500 dark:text-slate-400 md:text-2xl"
           type="submit"
           onClick={onSearchTermSubmit}
           aria-label="Search"
