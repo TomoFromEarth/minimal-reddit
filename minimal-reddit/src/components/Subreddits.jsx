@@ -25,7 +25,7 @@ const Subreddits = () => {
       visible: { opacity: 1, y: 0 },
     };
     return (
-      <motion.div initial="hidden" animate="visible" className="rounded-md bg-slate-100">
+      <motion.div initial="hidden" animate="visible" className="rounded-md bg-slate-100 dark:bg-slate-800">
         {loadingItems.map((_, index) => (
           <motion.div key={index} variants={itemVariants}>
             <SubredditsLoading />
@@ -37,7 +37,7 @@ const Subreddits = () => {
 
   return (
     <Card className="pr-4">
-      <h2 className="mb-2 mt-0 text-2xl font-semibold">Subreddits</h2>
+      <h2 className="mb-2 mt-0 text-2xl font-semibold text-slate-950 dark:text-slate-100">Subreddits</h2>
       <ul className="list-none p-0">
         {subreddits.map((subreddit) => (
           <li
@@ -54,9 +54,9 @@ const Subreddits = () => {
               <img
                 src={subreddit.icon_img || <Avatar name={`${subreddit.display_name}`} />}
                 alt={`${subreddit.display_name}`}
-                className="mr-2 h-8 w-8 rounded-full border-2 border-slate-600"
+                className="mr-2 h-8 w-8 rounded-full border-2 border-slate-600 dark:border-slate-950"
               />
-              {subreddit.display_name}
+              <div className="text-slate-950 dark:text-slate-100">{subreddit.display_name}</div>
             </button>
           </li>
         ))}

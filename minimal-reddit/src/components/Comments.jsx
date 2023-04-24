@@ -15,13 +15,13 @@ const Comments = ({ comment }) => {
   }
 
   return (
-    <div className="mt-6 rounded-lg border border-slate-400 p-2">
+    <div className="mt-6 rounded-lg border border-slate-400 p-2 text-slate-950 dark:border-slate-900 dark:text-slate-100">
       <div className="mb-2 flex items-center">
         <Avatar name={comment.author} />
-        <p className="font-bold">{comment.author}</p>
-        <p className="ml-auto text-xs">{formattedDate}</p>
+        <p className="ml-1 font-bold text-blue-600 dark:text-blue-500">{comment.author}</p>
+        <p className="ml-auto text-xs dark:text-slate-500">{formattedDate}</p>
       </div>
-      {<ReactMarkdown>{comment.body}</ReactMarkdown> || <Skeleton count={4} />}
+      {<ReactMarkdown className="text-sm">{comment.body}</ReactMarkdown> || <Skeleton count={4} />}
     </div>
   );
 };
