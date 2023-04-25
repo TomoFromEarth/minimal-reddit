@@ -23,7 +23,7 @@ const Header = () => {
   };
 
   return (
-    <header className="col-span-full grid h-16 grid-flow-col grid-cols-[1fr] content-center bg-slate-100 dark:bg-slate-800 md:mb-8 md:grid-cols-3 md:gap-4 md:px-16">
+    <header className="col-span-full mb-4 grid h-16 grid-flow-col grid-cols-[1fr] content-center bg-slate-100 dark:bg-slate-800 md:mb-8 md:grid-cols-3 md:gap-4 md:px-16">
       <div className="ml-4 flex items-center justify-start font-bold md:col-start-1 md:col-end-2 md:py-2">
         <FaReddit className="mx-1 h-8 w-8 text-blue-600 dark:text-blue-500 md:mr-2" />
         <p className="text-xs text-slate-950 dark:text-slate-300 md:text-base">

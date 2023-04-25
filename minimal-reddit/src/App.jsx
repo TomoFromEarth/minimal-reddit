@@ -26,10 +26,10 @@ function App() {
     <SkeletonTheme baseColor={baseColor} highlightColor={highlightColor}>
       <div className="grid grid-cols-1 dark:bg-slate-900 md:grid-cols-3">
         <Header />
-        <main className="p-4 md:col-start-1 md:col-end-3">
+        <main className="p-2 md:col-start-1 md:col-end-3 md:p-4">
           <Home />
         </main>
-        <aside className="p-4 md:col-start-3 md:col-end-4">
+        <aside className="p-2 md:col-start-3 md:col-end-4 md:p-4">
           <Subreddits />
         </aside>
       </div>

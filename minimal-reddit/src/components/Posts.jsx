@@ -120,7 +120,7 @@ const Posts = ({ post, onToggleComments }) => {
             <div>
               <img src={post.url} alt="" className="w-full rounded-lg" />
             </div>
-            <div className="mt-4 flex items-center justify-between pt-2">
+            <div className="mt-1 flex items-center justify-between pt-2 md:mt-4">
               <div className="mr-1 flex flex-col items-center justify-between md:hidden">
                 <button
                   type="button"
@@ -130,7 +130,7 @@ const Posts = ({ post, onToggleComments }) => {
                 >
                   {renderUpVote()}
                 </button>
-                <p className={`text-[8px] text-blue-600 dark:text-blue-500 ${getVoteType()}`}>
+                <p className={`my-1 text-[8px] text-blue-600 dark:text-blue-500 ${getVoteType()}`}>
                   {shortenNumber(post.ups, 1)}
                 </p>
                 <button
@@ -144,7 +144,7 @@ const Posts = ({ post, onToggleComments }) => {
               </div>
               <span className="flex items-center">
                 <Avatar name={post.author} />
-                <span className="ml-2 text-xs font-medium text-blue-600 dark:text-blue-500 md:text-sm md:font-bold">
+                <span className="ml-2 text-sm font-medium text-blue-600 dark:text-blue-500 md:font-bold">
                   {post.author}
                 </span>
               </span>
