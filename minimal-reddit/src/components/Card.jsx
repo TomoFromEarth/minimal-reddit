@@ -2,7 +2,9 @@ import PropTypes from "prop-types";
 
 const Card = ({ children }) => {
   return (
-    <div className={`mb-9 rounded-lg bg-slate-100 p-6 hover:shadow-lg dark:bg-slate-800 dark:shadow-slate-200`}>
+    <div
+      className={`mb-4 rounded-lg bg-slate-100 p-2 shadow-slate-200 hover:shadow-lg dark:bg-slate-800 md:mb-9 md:p-6`}
+    >
       {children}
     </div>
   );

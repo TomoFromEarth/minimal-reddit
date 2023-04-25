@@ -30,22 +30,22 @@ const Posts = ({ post, onToggleComments }) => {
   const renderUpVote = () => {
     if (vote === 1) {
       return (
-        <TiArrowUpThick className="pointer flex h-6 w-6 items-center rounded-lg border-none bg-none p-0 text-green-500" />
+        <TiArrowUpThick className="pointer flex h-4 w-4 items-center rounded-lg border-none bg-none p-0 text-green-500 md:h-6 md:w-6" />
       );
     }
     return (
-      <TiArrowUpOutline className="pointer flex h-6 w-6 items-center rounded-lg border-none bg-none p-0 text-slate-500" />
+      <TiArrowUpOutline className="pointer flex h-4 w-4 items-center rounded-lg border-none bg-none p-0 text-slate-500 md:h-6 md:w-6" />
     );
   };
 
   const renderDownVote = () => {
     if (vote === -1) {
       return (
-        <TiArrowDownThick className="pointer flex h-6 w-6 items-center rounded-lg border-none bg-none p-0 text-red-500" />
+        <TiArrowDownThick className="pointer flex h-4 w-4 items-center rounded-lg border-none bg-none p-0 text-red-500 md:h-6 md:w-6" />
       );
     }
     return (
-      <TiArrowDownOutline className="pointer flex h-6 w-6 items-center rounded-lg border-none bg-none p-0 text-slate-500" />
+      <TiArrowDownOutline className="pointer flex h-4 w-4 items-center rounded-lg border-none bg-none p-0 text-slate-500 md:h-6 md:w-6" />
     );
   };
 
@@ -94,7 +94,7 @@ const Posts = ({ post, onToggleComments }) => {
     <article key={post.id}>
       <Card>
         <motion.div initial="hidden" animate="visible" className="flex">
-          <motion.div variants={itemVariants} className="mr-6 flex flex-col items-center">
+          <motion.div variants={itemVariants} className="mr-3 hidden items-center md:mr-6 md:flex md:flex-col">
             <button
               type="button"
               className={`${vote === 1 && "text-green-500 hover:text-green-500 active:text-green-500"}`}
@@ -103,7 +103,7 @@ const Posts = ({ post, onToggleComments }) => {
             >
               {renderUpVote()}
             </button>
-            <p className={`my-2 text-sm text-blue-600 dark:text-blue-500 ${getVoteType()}`}>
+            <p className={`text-xs text-blue-600 dark:text-blue-500 md:my-2 md:text-sm ${getVoteType()}`}>
               {shortenNumber(post.ups, 1)}
             </p>
             <button
@@ -120,12 +120,35 @@ const Posts = ({ post, onToggleComments }) => {
             <div>
               <img src={post.url} alt="" className="w-full rounded-lg" />
             </div>
-            <div className="mt-4 flex items-center justify-between pt-2">
+            <div className="mt-1 flex items-center justify-between pt-2 md:mt-4">
+              <div className="mr-1 flex flex-col items-center justify-between md:hidden">
+                <button
+                  type="button"
+                  className={`${vote === 1 && "text-green-500 hover:text-green-500 active:text-green-500"}`}
+                  onClick={() => onHandleVote(1)}
+                  aria-label="Up vote"
+                >
+                  {renderUpVote()}
+                </button>
+                <p className={`my-1 text-[8px] text-blue-600 dark:text-blue-500 ${getVoteType()}`}>
+                  {shortenNumber(post.ups, 1)}
+                </p>
+                <button
+                  type="button"
+                  className={`${vote === -1 && "text-red-500 hover:text-red-500 active:text-red-500"}`}
+                  onClick={() => onHandleVote(-1)}
+                  aria-label="Down vote"
+                >
+                  {renderDownVote()}
+                </button>
+              </div>
               <span className="flex items-center">
                 <Avatar name={post.author} />
-                <span className="text-sm font-bold text-blue-600 dark:text-blue-500">{post.author}</span>
+                <span className="ml-2 text-sm font-medium text-blue-600 dark:text-blue-500 md:font-bold">
+                  {post.author}
+                </span>
               </span>
-              <span className="text-xs text-slate-500">
+              <span className="hidden text-xs text-slate-500 md:block">
                 {formatDistanceToNow(new Date(post.created_utc * 1000), { addSuffix: true })}
               </span>
               <span className="flex items-center">
@@ -135,9 +158,9 @@ const Posts = ({ post, onToggleComments }) => {
                   onClick={() => onToggleComments(post.permalink)}
                   aria-label="Show comments"
                 >
-                  <TiMessage className="mr-2 h-8 w-8" />
+                  <TiMessage className="mr-1 h-4 w-4 md:mr-2 md:h-8 md:w-8" />
                 </button>
-                <span className="text-slate-500">{shortenNumber(post.num_comments, 1)}</span>
+                <span className="text-xs text-slate-500">{shortenNumber(post.num_comments, 1)}</span>
               </span>
             </div>
             {renderComments()}
