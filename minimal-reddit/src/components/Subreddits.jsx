@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import { FaReddit } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSelectedSubreddit, setSelectedSubreddit } from "../store/redditSlice";
 import { fetchSubreddits, selectSubreddits } from "../store/subredditSlice";
-import Avatar from "./Avatar";
 import Card from "./Card";
 import SubredditsLoading from "./SubredditsLoading";
 
@@ -51,11 +51,16 @@ const Subreddits = () => {
               onClick={() => dispatch(setSelectedSubreddit(subreddit.url))}
               className="pointer flex w-full items-center rounded-md border-none bg-none p-4 font-semibold hover:bg-gray-400 hover:bg-opacity-20"
             >
-              <img
-                src={subreddit.icon_img || <Avatar name={`${subreddit.display_name}`} />}
-                alt={`${subreddit.display_name}`}
-                className="mr-2 h-8 w-8 rounded-full border-2 border-slate-600 dark:border-slate-950"
-              />
+              {subreddit.icon_img === "" ? (
+                <FaReddit className="h-8 w-8 rounded-full border-2 border-slate-600 text-blue-600 dark:border-slate-950 dark:text-blue-500 md:mr-2" />
+              ) : (
+                <img
+                  src={subreddit.icon_img}
+                  alt={`${subreddit.display_name}`}
+                  className="mr-2 h-8 w-8 rounded-full border-2 border-slate-600 dark:border-slate-950"
+                />
+              )}
+
               <div className="text-slate-950 dark:text-slate-100">{subreddit.display_name}</div>
             </button>
           </li>
