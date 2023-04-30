@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "PATH": "/vercel/node_modules/.bin:$PATH"
+    }
+  }
+}
