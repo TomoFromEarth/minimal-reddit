@@ -2,7 +2,6 @@
   "build": {
     "env": {
       "CACHE_VERSION": "1"
-    },
-    "command": "npm ci && npm run build"
+    }
   }
 }
